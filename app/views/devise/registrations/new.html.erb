@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Crear cuenta</h2>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-group">
+              <%= f.label :nombre %>
+              <%= f.text_field :nombre, autofocus: true, autocomplete: "new-nombre", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :rut %>
+              <%= f.text_field :rut, autofocus: true, autocomplete: "new-rut", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :dirección %>
+              <%= f.text_field :direccion, autofocus: true, autocomplete: "new-direccion", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :teléfono %>
+              <%= f.number_field :telefono, autofocus: true, autocomplete: "new-telfeono", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </div>
+            <div class="actions mt-3">
+              <div class="d-flex justify-content-between">
+                <%= link_to "Volver a las publicaciones", root_path, class: "btn btn-color btn-sm" %>
+                <%= f.submit "Crear cuenta", class: "btn btn-success btn-sm" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

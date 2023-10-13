@@ -1,0 +1,98 @@
+body {
+  background-image: linear-gradient(to left,#c3baba, #9f9b9b);
+  height: 100vh;
+  color: #ffffff;
+}
+
+.card {
+  /* background-image: linear-gradient(to left,#9f9b9b, #c3baba);
+  color: #ffffff; */
+
+
+  background-color: rgba(123, 118, 118, 0.8);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+
+
+}  
+
+.card-movie {
+	background-color: #ffffff;
+	color: #ffffff;
+	border: 2px solid #ffffff;
+}
+
+
+.navbar {
+  /* background-image: linear-gradient(to left,rgb(183, 162, 202), #351330);
+  background-color: rgba(123, 118, 118, 0.8); */
+  background-color: rgba(183, 162, 202, 0.8);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;  
+}
+
+.navbar-brand {
+  color: #351330;
+  font-weight: bold;
+}
+
+.navbar-brand:hover {
+  color: #5f3158; 
+}
+
+.navbar-nav .nav-link {
+  color: #351330;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #5f3158;
+}
+
+.rounded-image {
+  border-radius: 50%; 
+  width: 30px; 
+  height: 30px; 
+  object-fit: cover; 
+}
+
+.wrapper {
+  display: flex;
+}
+
+.main-content {
+  min-height: calc(100vh - 150px);
+  flex: 1;
+  padding: 20px; 
+  min-height: 88vh;
+}
+
+.footer {
+  background-color: rgba(114, 102, 102, 0.2);
+  padding: 10px;
+  
+}
+
+
+.left-image {
+  background-image: url('/assets/patitas.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh; 
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.btn-color {
+  background-color: rgba(53, 19, 48, 0.8);
+  /* background-color: rgb(53, 19, 48);  */
+  color: #ffffff; 
+}
+
+.btn-color:hover {
+  background-color: #b7a2ca; 
+}
+
+
