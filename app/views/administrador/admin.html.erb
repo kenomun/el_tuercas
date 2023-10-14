@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+  <div class="card col-md-5">
+    <div class="card-body">
+      <h5 class="card-title">Panel de Administrador</h5>
+      <p class="card-text">Bienvenido al panel de administrador. Aquí puedes administrar usuarios y servicios.</p>
+      <div class="d-flex flex-column">
+        <%= link_to "Administrar clientes", admin_servicio_clientes_path, class: "btn btn-color btn-sm mb-3" %>
+        <%= link_to "Administrar servicios", servicios_path, class: "btn btn-color btn-sm mb-3" %>
+        <%= link_to "Administrar personal", admin_servicio_personal_path, class: "btn btn-color btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

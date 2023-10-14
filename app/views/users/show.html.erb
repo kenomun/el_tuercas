@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+  <div class="card col-md-6">
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="card col-md-12">
+          <div class="card-body">
+            <h5 class="card-title">Detalle de usuario</h5>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Nombre</th>
+                  <td><%= @user.nombre %></td>
+                </tr>
+                <tr>
+                  <th>RUT</th>
+                  <td><%= @user.rut %></td>
+                </tr>
+                <tr>
+                  <th>Teléfono</th>
+                  <td><%= @user.telefono %></td>
+                </tr>
+                <tr>
+                  <th>Dirección</th>
+                  <td><%= @user.direccion %></td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td><%= @user.email %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="card col-md-12">
+          <div class="card-body">
+            <h5 class="card-title">Vehículos Asociados</h5>
+            <% if @user.vehiculos.any? %>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Patente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @user.vehiculos.each do |vehiculo| %>
+                    <tr>
+                      <td><%= vehiculo.marca %></td>
+                      <td><%= vehiculo.modelo %></td>
+                      <td><%= vehiculo.año %></td>
+                      <td><%= vehiculo.patente %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>Este usuario no tiene vehículos registrados.</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <%= link_to "Volver a lista de vehículos", request.referer, class: "btn btn-color btn-sm mt-3" %>
+      </div>
+    </div>
+  </div>
