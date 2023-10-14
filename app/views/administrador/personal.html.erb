@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="card col-md-10">
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <div class="card col-md-12">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">Listado de personal</h5>
+              <%= link_to admin_nuevo_personal_path, class: "small-text btn btn-success btn-sm" do %>
+                <i class="fas fa-plus"></i> Agregar cliente
+              <% end %>
+            </div>
+            <table class="table table-bordered mt-3">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>RUT</th>
+                  <th>Teléfono</th>
+                  <th>Dirección</th>
+                  <th>Email</th>
+                  <th>role</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                  <% if user.admin? %>
+                    <tr>
+                      <td><%= user.nombre %></td>
+                      <td><%= user.rut %></td>
+                      <td><%= user.telefono %></td>
+                      <td><%= user.direccion %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.role %></td>
+                      <td>
+                        <div class="d-flex">
+                          <%= link_to admin_editar_personal_path(user), class: "btn btn-warning btn-sm", title: "Editar usuario" do %>
+                            <i class="fas fa-pencil-alt"></i>
+                          <% end %>
+                          <%= button_to admin_eliminar_personal_path(user), data: { confirm: "¿Estás seguro?", turbo_confirm: "¿Estás seguro que deseas eliminar a este personal?" }, method: :delete, class: "btn btn-danger btn-sm", style: "margin-left: 5px;", title: "Eliminar usuario" do %>
+                            <i class="fas fa-times"></i>
+                          <% end %>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+              <%= link_to "Volver a opciones de administración", admin_path, class: "btn btn-color btn-sm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

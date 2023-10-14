@@ -25,7 +25,7 @@ class User < ApplicationRecord
   enum role: { admin: "admin", user: "user" }
 
   #Relaciones
-  has_many :vehiculo
+  has_many :vehiculos, dependent: :destroy
 
 
   #Validaciones
@@ -35,6 +35,6 @@ class User < ApplicationRecord
   validates :direccion, presence: true
   validates :email, presence: true
   validates :role, presence: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
 end

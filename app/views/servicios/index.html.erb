@@ -25,10 +25,10 @@
                 <td class="small-text"><%= servicio.descripcion %></td>
                 <td>
                   <div class="d-flex">
-                    <%= link_to edit_servicio_path(servicio), class: "small-text btn btn-warning btn-sm" do %>
+                    <%= link_to edit_servicio_path(servicio), class: "small-text btn btn-warning btn-sm", title:"Editar servicio" do %>
                       <i class="fas fa-pencil-alt"></i>
                     <% end %>
-                    <%= button_to servicio,  data: { confirm: "¿Estás seguro?", turbo_confirm: "¿Estás seguro que deceas eliminar este servicio?" }, method: :delete, class: "small-text btn btn-danger btn-sm ml-2", style: "margin-left: 5px;" do %>
+                    <%= button_to servicio,  data: { confirm: "¿Estás seguro?", turbo_confirm: "¿Estás seguro que deceas eliminar este servicio?" }, method: :delete, class: "small-text btn btn-danger btn-sm", style: "margin-left: 5px;", title:"Eliminar servicio" do %>
                       <i class="fas fa-times"></i>
                     <% end %>
                   </div>
@@ -38,7 +38,7 @@
           </tbody>
         </table>
         <div class="d-flex justify-content-between">
-          <%= link_to "Volver a la página principal", root_path, class: "btn btn-color btn-sm" %>
+          <%= link_to "Volver a opciones de administración", admin_path, class: "btn btn-color btn-sm" %>
         </div>
       </div>
     </div>

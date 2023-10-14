@@ -15,7 +15,7 @@ class VehiculosController < ApplicationController
     if current_user.admin?
       @vehiculos = Vehiculo.order(created_at: :desc)
     else
-      @vehiculos = current_user.vehiculo
+      @vehiculos = current_user.vehiculos
     end
   end
   
@@ -26,7 +26,7 @@ class VehiculosController < ApplicationController
 
   # GET /vehiculos/new
   def new
-    @vehiculo = current_user.vehiculo.build
+    @vehiculo = current_user.vehiculos.build
     @vehiculo = Vehiculo.new(año: Date.current.year)
   end
 
@@ -36,7 +36,7 @@ class VehiculosController < ApplicationController
 
   # POST /vehiculos or /vehiculos.json
   def create
-    @vehiculo = current_user.vehiculo.build(vehiculo_params)
+    @vehiculo = current_user.vehiculos.build(vehiculo_params)
     @vehiculo.user = current_user
 
     respond_to do |format|

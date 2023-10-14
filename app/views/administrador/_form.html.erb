@@ -1,0 +1,41 @@
+<%= form_with model: user, url: user.new_record? ? admin_crear_cliente_path : admin_actualizar_cliente_path(user), local: true, method: user.new_record? ? :post : :patch do |form| %>  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this servicio from being saved:</h2>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :rut %>
+    <%= form.text_field :rut, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :direccion %>
+    <%= form.text_field :direccion, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :telefono %>
+    <%= form.number_field :telefono, class: "form-control" %>
+  </div>
+  <div class="form-group mb-3">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "form-control" %>
+  </div>
+  <% if user.new_record? %>
+    <h6>El password se asignará de forma automática; serán los 6 primeros dígitos del RUT del cliente.</h6>
+  <% end %>
+  <div class="actions mt-3">
+    <div class="d-flex justify-content-between">
+      <%= link_to "Volver a lista de usuarios", admin_servicio_clientes_path, class: "btn btn-color btn-sm" %>
+      <%= form.submit user.new_record? ? "Crear cuenta" : "Actualizar cuenta", class: "btn btn-success btn-sm" %>
+    </div>
+    </div>
+</div>
+<% end %>
