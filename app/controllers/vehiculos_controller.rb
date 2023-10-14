@@ -12,8 +12,13 @@ class VehiculosController < ApplicationController
 
   # GET /vehiculos or /vehiculos.json
   def index
-    @vehiculos = Vehiculo.order(created_at: :desc)
-  end  
+    if current_user.admin?
+      @vehiculos = Vehiculo.order(created_at: :desc)
+    else
+      @vehiculos = current_user.vehiculo
+    end
+  end
+  
 
   # GET /vehiculos/1 or /vehiculos/1.json
   def show
@@ -36,7 +41,7 @@ class VehiculosController < ApplicationController
 
     respond_to do |format|
       if @vehiculo.save
-        format.html { redirect_to vehiculo_url(@vehiculo), notice: "Vehiculo was successfully created." }
+        format.html { redirect_to vehiculos_path, notice: "El vehiculo se creo correctamente." }
         format.json { render :show, status: :created, location: @vehiculo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +54,7 @@ class VehiculosController < ApplicationController
   def update
     respond_to do |format|
       if @vehiculo.update(vehiculo_params)
-        format.html { redirect_to vehiculo_url(@vehiculo), notice: "Vehiculo was successfully updated." }
+        format.html { redirect_to vehiculos_path, notice: "El vehiculo se actualizo correctamente." }
         format.json { render :show, status: :ok, location: @vehiculo }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +68,7 @@ class VehiculosController < ApplicationController
     @vehiculo.destroy
 
     respond_to do |format|
-      format.html { redirect_to vehiculos_url, notice: "Vehiculo was successfully destroyed." }
+      format.html { redirect_to vehiculos_url, notice: "El vehiculo se elimino correctamente." }
       format.json { head :no_content }
     end
   end

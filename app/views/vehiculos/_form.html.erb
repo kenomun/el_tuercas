@@ -10,22 +10,23 @@
     </div>
   <% end %>
   <div>
-    <%= form.label :marca, style: "display: block" %>
-    <%= form.text_field :marca %>
+    <%= form.label :marca, class: "form-label" %>
+    <%= form.text_field :marca, class: "form-control" %>
   </div>
   <div>
-    <%= form.label :modelo, style: "display: block" %>
-    <%= form.text_field :modelo %>
+    <%= form.label :modelo, class: "form-label" %>
+    <%= form.text_field :modelo, class: "form-control" %>
   </div>
   <div>
-    <%= form.label :año, style: "display: block" %>
-    <%= form.select :año, (Date.current.year - 100..Date.current.year).to_a.reverse, { include_blank: true } %>
+    <%= form.label :año, class: "form-label" %>
+    <%= form.select :año, (Date.current.year - 100..Date.current.year).to_a.reverse, { include_blank: true }, class: "form-control" %>
   </div>
   <div>
-    <%= form.label :patente, style: "display: block" %>
-    <%= form.text_field :patente %>
+    <%= form.label :patente, class: "form-label" %>
+    <%= form.text_field :patente, class: "form-control" %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-between ">
+    <%= link_to "Volver a la página principal", vehiculos_path, class: "btn btn-color mt-3" %>
+    <%= form.submit "Guardar", class: "btn btn-success mt-3" %>
   </div>
 <% end %>
