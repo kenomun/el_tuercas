@@ -1,0 +1,43 @@
+<%= form_with(model: solicitude) do |form| %>
+  <% if solicitude.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(solicitude.errors.count, "error") %> prohibited this solicitude from being saved:</h2>
+      <ul>
+        <% solicitude.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :codigo, class: "form-label"%>
+    <%= form.text_field :codigo, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :fecha_inicio, class: "form-label" %>
+    <%= form.date_field :fecha_inicio, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :fecha_termino, class: "form-label" %>
+    <%= form.date_field :fecha_termino, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :estado, class: "form-label" %>
+    <%= form.text_field :estado, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :user_id, class: "form-label" %>
+    <%= form.text_field :user_id, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :vehiculo_id, class: "form-label" %>
+    <%= form.text_field :vehiculo_id, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.label :servicio_id, class: "form-label" %>
+    <%= form.text_field :servicio_id, class: "form-control"  %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

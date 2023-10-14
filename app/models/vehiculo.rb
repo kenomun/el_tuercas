@@ -12,16 +12,16 @@
 #  updated_at :datetime         not null
 #
 class Vehiculo < ApplicationRecord
+  
+  #Relaciones
   belongs_to :user
   has_many :requests
-
-  #Relaciones
+  has_many :solicitudes
 
   #Validaciones
   validates :marca, presence: true
   validates :modelo, presence: true
   validates :año, presence: true
-
   validates :patente, presence: true
 
 end
