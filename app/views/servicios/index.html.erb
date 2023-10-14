@@ -1,0 +1,46 @@
+<div id="servicios">
+  <div class="row justify-content-center">
+    <div class="card col-md-8">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h5 class="card-title">Listado de Servicios</h5>
+          <%= link_to new_servicio_path, class: "small-text btn btn-success btn-sm" do %>
+            <i class="fas fa-plus"></i> Nuevo Servicio
+          <% end %>
+        </div>
+        <table class="table table-striped table-sm mt-3">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="text-small">Nombre</th>
+              <th class="text-small">Descripción</th>
+              <th class="text-small">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @servicios.each.with_index(1) do |servicio, index| %>
+              <tr>
+                <td class="small-text"><%= index %></td>
+                <td class="small-text"><%= servicio.nombre %></td>
+                <td class="small-text"><%= servicio.descripcion %></td>
+                <td>
+                  <div class="d-flex">
+                    <%= link_to edit_servicio_path(servicio), class: "small-text btn btn-warning btn-sm" do %>
+                      <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <%= button_to servicio,  data: { confirm: "¿Estás seguro?", turbo_confirm: "¿Estás seguro que deceas eliminar este servicio?" }, method: :delete, class: "small-text btn btn-danger btn-sm ml-2", style: "margin-left: 5px;" do %>
+                      <i class="fas fa-times"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between">
+          <%= link_to "Volver a la página principal", root_path, class: "btn btn-color btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,14 +26,14 @@ body {
 .navbar {
   /* background-image: linear-gradient(to left,rgb(183, 162, 202), #351330);
   background-color: rgba(123, 118, 118, 0.8); */
-  background-color: rgba(183, 162, 202, 0.8);
+  background-color: rgba(156, 187, 230, 0.8);
   position: fixed;
   width: 100%;
   z-index: 1000;  
 }
 
 .navbar-brand {
-  color: #351330;
+  color: #5747cd;
   font-weight: bold;
 }
 
@@ -93,6 +93,10 @@ body {
 
 .btn-color:hover {
   background-color: #b7a2ca; 
+}
+
+.small-text {
+  font-size: 11px; /* Puedes ajustar este valor según tus preferencias */
 }
 
 
