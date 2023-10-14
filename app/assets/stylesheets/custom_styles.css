@@ -5,22 +5,20 @@ body {
 }
 
 .card {
-  /* background-image: linear-gradient(to left,#9f9b9b, #c3baba);
-  color: #ffffff; */
-
 
   background-color: rgba(123, 118, 118, 0.8);
   color: #ffffff;
   border: 2px solid #ffffff;
 
-
 }  
 
-.card-movie {
+
+
+/* .card-movie {
 	background-color: #ffffff;
 	color: #ffffff;
 	border: 2px solid #ffffff;
-}
+} */
 
 
 .navbar {
@@ -87,7 +85,6 @@ body {
 
 .btn-color {
   background-color: rgba(53, 19, 48, 0.8);
-  /* background-color: rgb(53, 19, 48);  */
   color: #ffffff; 
 }
 
@@ -96,7 +93,7 @@ body {
 }
 
 .small-text {
-  font-size: 11px; /* Puedes ajustar este valor según tus preferencias */
+  font-size: 11px; 
 }
 
 
