@@ -18,9 +18,11 @@
           </li>
         <% end %>
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Ver mis vehiculos", vehiculos_path, class: "nav-link" %>
-          </li>
+          <% if current_user.user? %>
+            <li class="nav-item">
+              <%= link_to "Ver mis vehiculos", vehiculos_path, class: "nav-link" %>
+            </li>
+          <% end %>
         <% end %>
         <li class="nav-item">
           <%= link_to "Editar perfil", edit_user_registration_path, class: "nav-link" %>
