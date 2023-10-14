@@ -8,5 +8,6 @@ class HomeController < ApplicationController
 
   
   def index
+    @servicios = Servicio.order(:id)
   end
 end

@@ -1,0 +1,32 @@
+<%= form_with(model: vehiculo) do |form| %>
+  <% if vehiculo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(vehiculo.errors.count, "error") %> prohibited this vehiculo from being saved:</h2>
+      <ul>
+        <% vehiculo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :marca, class: "form-label" %>
+    <%= form.text_field :marca, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.label :modelo, class: "form-label" %>
+    <%= form.text_field :modelo, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.label :año, class: "form-label" %>
+    <%= form.select :año, (Date.current.year - 100..Date.current.year).to_a.reverse, { include_blank: true }, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.label :patente, class: "form-label" %>
+    <%= form.text_field :patente, class: "form-control" %>
+  </div>
+  <div class="d-flex justify-content-between ">
+    <%= link_to "Volver a la página principal", vehiculos_path, class: "btn btn-color mt-3" %>
+    <%= form.submit "Guardar", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>

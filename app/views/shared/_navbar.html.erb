@@ -17,6 +17,11 @@
             <%= link_to "Ver servicios", servicios_path, class: "nav-link" %>
           </li>
         <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Ver vehiculos registrados", vehiculos_path, class: "nav-link" %>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to "Editar perfil", edit_user_registration_path, class: "nav-link" %>
         </li>
