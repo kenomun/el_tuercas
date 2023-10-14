@@ -25,7 +25,7 @@ class User < ApplicationRecord
   enum role: { admin: "admin", user: "user" }
 
   #Relaciones
-  belongs_to :vehiculo
+  has_many :vehiculo
 
 
   #Validaciones

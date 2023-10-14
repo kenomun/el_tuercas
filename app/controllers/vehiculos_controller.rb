@@ -1,10 +1,19 @@
 class VehiculosController < ApplicationController
   before_action :set_vehiculo, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!, except: []
+  before_action only: [:new, :create] do
+    authorize_request(["admin", "user"])
+  end
+
+  before_action only: [:edit, :update, :destroy] do
+    authorize_request(["admin", "user"])
+  end
+
   # GET /vehiculos or /vehiculos.json
   def index
-    @vehiculos = Vehiculo.all
-  end
+    @vehiculos = Vehiculo.order(created_at: :desc)
+  end  
 
   # GET /vehiculos/1 or /vehiculos/1.json
   def show
@@ -12,7 +21,8 @@ class VehiculosController < ApplicationController
 
   # GET /vehiculos/new
   def new
-    @vehiculo = Vehiculo.new
+    @vehiculo = current_user.vehiculo.build
+    @vehiculo = Vehiculo.new(año: Date.current.year)
   end
 
   # GET /vehiculos/1/edit
@@ -21,7 +31,8 @@ class VehiculosController < ApplicationController
 
   # POST /vehiculos or /vehiculos.json
   def create
-    @vehiculo = Vehiculo.new(vehiculo_params)
+    @vehiculo = current_user.vehiculo.build(vehiculo_params)
+    @vehiculo.user = current_user
 
     respond_to do |format|
       if @vehiculo.save
@@ -65,6 +76,6 @@ class VehiculosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vehiculo_params
-      params.require(:vehiculo).permit(:marca, :modelo, :año, :patente, :user_id)
+      params.require(:vehiculo).permit(:marca, :modelo, :año, :patente)
     end
 end

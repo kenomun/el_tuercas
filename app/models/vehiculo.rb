@@ -14,4 +14,14 @@
 class Vehiculo < ApplicationRecord
   belongs_to :user
   has_many :requests
+
+  #Relaciones
+
+  #Validaciones
+  validates :marca, presence: true
+  validates :modelo, presence: true
+  validates :año, presence: true
+
+  validates :patente, presence: true
+
 end
