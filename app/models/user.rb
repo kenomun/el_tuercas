@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   #Relaciones
   has_many :vehiculos, dependent: :destroy
+  has_many :solicitudes
 
 
   #Validaciones

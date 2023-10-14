@@ -10,7 +10,10 @@
 #
 class Servicio < ApplicationRecord
 
-    #Validaciones
+  #Relaciones
+  has_and_belongs_to_many :solicitudes
+
+  #Validaciones
   validates :nombre, presence: true
   validates :descripcion, presence: true
   

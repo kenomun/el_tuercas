@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_14_022253) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_14_103030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_022253) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "descripcion"
+  end
+
+  create_table "servicios_solicitudes", id: false, force: :cascade do |t|
+    t.bigint "servicio_id"
+    t.bigint "solicitud_id"
+    t.index ["servicio_id"], name: "index_servicios_solicitudes_on_servicio_id"
+    t.index ["solicitud_id"], name: "index_servicios_solicitudes_on_solicitud_id"
+  end
+
+  create_table "servicios_solicituds", id: false, force: :cascade do |t|
+    t.bigint "solicitud_id", null: false
+    t.bigint "servicio_id", null: false
+  end
+
+  create_table "solicitudes", force: :cascade do |t|
+    t.string "codigo"
+    t.date "fecha_inicio"
+    t.date "fecha_termino"
+    t.string "estado"
+    t.bigint "user_id", null: false
+    t.bigint "vehiculo_id", null: false
+    t.bigint "servicio_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["servicio_id"], name: "index_solicitudes_on_servicio_id"
+    t.index ["user_id"], name: "index_solicitudes_on_user_id"
+    t.index ["vehiculo_id"], name: "index_solicitudes_on_vehiculo_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,5 +76,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_022253) do
     t.index ["user_id"], name: "index_vehiculos_on_user_id"
   end
 
+  add_foreign_key "solicitudes", "servicios"
+  add_foreign_key "solicitudes", "users"
+  add_foreign_key "solicitudes", "vehiculos"
   add_foreign_key "vehiculos", "users"
 end

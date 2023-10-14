@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :solicitudes
   resources :vehiculos
   resources :servicios
   get 'home/index'

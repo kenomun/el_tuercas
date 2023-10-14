@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: solicitudes
+#
+#  id            :bigint           not null, primary key
+#  codigo        :string
+#  fecha_inicio  :date
+#  fecha_termino :date
+#  estado        :string
+#  user_id       :bigint           not null
+#  vehiculo_id   :bigint           not null
+#  servicio_id   :bigint           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  codigo: MyString
+  fecha_inicio: 2023-10-14
+  fecha_termino: 2023-10-14
+  estado: MyString
+  user: one
+  vehiculo: one
+  servicio: one
+
+two:
+  codigo: MyString
+  fecha_inicio: 2023-10-14
+  fecha_termino: 2023-10-14
+  estado: MyString
+  user: two
+  vehiculo: two
+  servicio: two
