@@ -3,7 +3,10 @@ class SolicitudesController < ApplicationController
 
   # GET /solicitudes or /solicitudes.json
   def index
-    @solicitudes = Solicitude.all
+    def index
+      @solicitudes = Solicitude.includes(:user, :vehiculo).all
+    end
+    
   end
 
   # GET /solicitudes/1 or /solicitudes/1.json
@@ -13,6 +16,8 @@ class SolicitudesController < ApplicationController
   # GET /solicitudes/new
   def new
     @solicitude = Solicitude.new
+    @solicitude.generate_random_code
+    @solicitude.fecha_inicio = Date.current
   end
 
   # GET /solicitudes/1/edit
@@ -21,18 +26,39 @@ class SolicitudesController < ApplicationController
 
   # POST /solicitudes or /solicitudes.json
   def create
-    @solicitude = Solicitude.new(solicitude_params)
-
+    servicios_ids = params[:solicitude].delete(:servicios_ids)
+  
     respond_to do |format|
-      if @solicitude.save
-        format.html { redirect_to solicitude_url(@solicitude), notice: "Solicitude was successfully created." }
-        format.json { render :show, status: :created, location: @solicitude }
+      # ...
+      solicitudes_creadas = []
+      servicios_ids.each do |servicio_id|
+        solicitude_params = params.require(:solicitude).permit(:fecha_inicio, :estado, :vehiculo_id).merge(servicio_id: servicio_id)
+        @solicitude = Solicitude.new(solicitude_params)
+        @solicitude.user = current_user
+  
+        if @solicitude.save
+          solicitudes_creadas << @solicitude
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @solicitude.errors, status: :unprocessable_entity }
+          return
+        end
+      end
+  
+      if solicitudes_creadas.any?
+        format.html { redirect_to solicitudes_path, notice: "Se crearon solicitudes con exito." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @solicitude.errors, status: :unprocessable_entity }
+        format.html { redirect_to solicitudes_path, notice: "No se crearon solicitudes." }
       end
     end
   end
+  
+  
+  
+  
+  
+    
+  
 
   # PATCH/PUT /solicitudes/1 or /solicitudes/1.json
   def update
@@ -65,6 +91,6 @@ class SolicitudesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def solicitude_params
-      params.require(:solicitude).permit(:codigo, :fecha_inicio, :fecha_termino, :estado, :user_id, :vehiculo_id, :servicio_id)
+      params.require(:solicitude).permit(:fecha_inicio, :estado, :vehiculo_id, servicios_ids: [])
     end
 end

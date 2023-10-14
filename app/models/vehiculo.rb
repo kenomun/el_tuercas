@@ -24,4 +24,8 @@ class Vehiculo < ApplicationRecord
   validates :año, presence: true
   validates :patente, presence: true
 
+  def marca_modelo
+    "#{marca} - #{modelo}"
+  end
+
 end

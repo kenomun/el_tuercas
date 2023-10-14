@@ -14,7 +14,18 @@
 #  updated_at    :datetime         not null
 #
 class Solicitude < ApplicationRecord
+  before_create :generate_random_code
+
+  #Relaciones
   belongs_to :user
   belongs_to :vehiculo
   has_and_belongs_to_many :servicios
+
+  #Validaciones
+
+
+
+  def generate_random_code
+    self.codigo = SecureRandom.hex(3).upcase
+  end
 end

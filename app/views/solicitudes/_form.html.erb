@@ -10,34 +10,30 @@
     </div>
   <% end %>
   <div>
-    <%= form.label :codigo, class: "form-label"%>
-    <%= form.text_field :codigo, class: "form-control"  %>
+    <strong>Código de Solicitud:</strong> <%= solicitude.codigo %>
   </div>
   <div>
-    <%= form.label :fecha_inicio, class: "form-label" %>
-    <%= form.date_field :fecha_inicio, class: "form-control"  %>
+    <%= form.label :fecha_inicio, "Fecha de Inicio" %>
+    <%= form.text_field :fecha_inicio, class: "form-control", readonly: true %>
   </div>
   <div>
-    <%= form.label :fecha_termino, class: "form-label" %>
-    <%= form.date_field :fecha_termino, class: "form-control"  %>
+    <%= form.label :estado, "Estado" %>
+    <%= form.text_field :estado, class: "form-control", value: "Pendiente", readonly: true %>
+    <%= form.hidden_field :estado, value: "Pendiente" %>
   </div>
   <div>
-    <%= form.label :estado, class: "form-label" %>
-    <%= form.text_field :estado, class: "form-control"  %>
+    <%= form.label :vehiculo_id, "Selecciona un vehículo" %>
+    <%= form.collection_select :vehiculo_id, current_user.vehiculos, :id, :marca_modelo, { include_blank: "Selecciona un vehículo" }, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :user_id, class: "form-label" %>
-    <%= form.text_field :user_id, class: "form-control"  %>
-  </div>
-  <div>
-    <%= form.label :vehiculo_id, class: "form-label" %>
-    <%= form.text_field :vehiculo_id, class: "form-control"  %>
-  </div>
-  <div>
-    <%= form.label :servicio_id, class: "form-label" %>
-    <%= form.text_field :servicio_id, class: "form-control"  %>
-  </div>
-  <div>
-    <%= form.submit %>
+  <%= form.label :servicio_ids, "Selecciona los servicios:" %>
+  <% Servicio.all.each do |service| %>
+    <div class="form-check">
+      <%= form.check_box :servicios_ids, { multiple: true }, service.id, nil %>
+      <%= form.label service.nombre, class: "form-check-label" %>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-between ">
+    <%= link_to "Volver a las solicitudes", solicitudes_path, class: "btn btn-color mt-3" %>
+    <%= form.submit "Guardar", class: "btn btn-success mt-3" %>
   </div>
 <% end %>
