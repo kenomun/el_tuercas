@@ -1,5 +1,13 @@
 class ServiciosController < ApplicationController
   before_action :set_servicio, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action only: [:new, :create] do
+    authorize_request(["admin", "user"])
+  end
+
+  before_action only: [:edit, :update, :destroy] do
+    authorize_request(["admin", "user"])
+  end
 
   # GET /servicios or /servicios.json
   def index
@@ -14,6 +22,7 @@ class ServiciosController < ApplicationController
   # GET /servicios/new
   def new
     @servicio = Servicio.new
+    
   end
 
   # GET /servicios/1/edit
@@ -26,7 +35,7 @@ class ServiciosController < ApplicationController
 
     respond_to do |format|
       if @servicio.save
-        format.html { redirect_to servicio_url(@servicio), notice: "Servicio was successfully created." }
+        format.html { redirect_to servicios_path, notice: "Servicio creado correctamente." }
         format.json { render :show, status: :created, location: @servicio }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +48,7 @@ class ServiciosController < ApplicationController
   def update
     respond_to do |format|
       if @servicio.update(servicio_params)
-        format.html { redirect_to servicio_url(@servicio), notice: "Servicio was successfully updated." }
+        format.html { redirect_to servicios_path, notice: "Servicio editado correctamente." }
         format.json { render :show, status: :ok, location: @servicio }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +62,7 @@ class ServiciosController < ApplicationController
     @servicio.destroy
 
     respond_to do |format|
-      format.html { redirect_to servicios_url, notice: "Servicio was successfully destroyed." }
+      format.html { redirect_to servicios_url, notice: "Servicio eliminado correctamente.." }
       format.json { head :no_content }
     end
   end
